@@ -7,10 +7,31 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
+    <!-- 开场界面 -->
+    <div class="intro-container" id="intro-container">
+        <div class="intro-content">
+            <h2 id="intro-text">没人告诉你陌生链接不要随便点吗？？</h2>
+        </div>
+    </div>
+
+    <!-- 对白界面 -->
+    <div class="dialog-container" id="dialog-container" style="display: none;">
+        <div class="dialog-box">
+            <div class="dialog-content" id="dialog-content">
+                <p>准备好接收新年祝福了吗？</p>
+            </div>
+            <div class="dialog-buttons">
+                <button id="dialog-btn-yes">当然啦！</button>
+                <button id="dialog-btn-no">等等...</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 主界面 -->
+    <div class="container" id="main-container" style="display: none;">
         <h1>新年快乐！</h1>
         <p>点击下方按钮，接收新年祝福</p>
-        <button id="greeting-btn">发送祝福</button>
+        <button id="greeting-btn">Get Luck!</button>
     </div>
     <div id="greeting-windows"></div>
     <script src="script.js"></script>
