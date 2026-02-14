@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>新年祝福</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>新年快乐！</h1>
+        <p>点击下方按钮，接收新年祝福</p>
+        <button id="greeting-btn">发送祝福</button>
+    </div>
+    <div id="greeting-windows"></div>
+    <script src="script.js"></script>
+    <audio id="bg-music" loop>
+  <source src="music.mp3" type="audio/mpeg">
+  您的浏览器不支持 audio 元素。
+</audio>
+
+<script>
+  const audio = document.getElementById('bg-music');
+  
+  // 尝试自动播放
+  audio.play().catch(() => {
+    // 自动播放失败，等待用户点击页面后播放
+    document.addEventListener('click', function once() {
+      audio.play();
+      document.removeEventListener('click', once);
+    });
+  });
+</script>
+</body>
+</html>
