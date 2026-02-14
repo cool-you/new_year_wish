@@ -18,8 +18,8 @@ body {
     max-width: 100%;
     width: 100%;
     position: absolute;
-    top: 50%;
-    left: 50%;
+    top: 35%;
+    left: 2%;
     transform: translate(-50%, -50%);
 }
 
@@ -34,6 +34,7 @@ h1 {
     text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5), 0 0 20px #ffd700, 0 0 30px #ffed4e;
     animation: glow 1.5s ease-in-out infinite alternate, bounce 2s ease-in-out infinite;
     letter-spacing: 10px;
+    text-align: center;
 }
 
 p {
@@ -66,6 +67,159 @@ p {
 
 #greeting-btn:active {
     transform: translateY(0);
+}
+
+/* 对白界面样式 */
+.dialog-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    background: rgba(0, 0, 0, 0.7);
+}
+
+.dialog-box {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 10px;
+    padding: 2rem;
+    max-width: 500px;
+    width: 90%;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    border: 3px solid #ffd700;
+}
+
+.dialog-content {
+    margin-bottom: 2rem;
+}
+
+.dialog-content p {
+    color: #333;
+    font-size: 1.5rem;
+    text-align: center;
+    line-height: 1.4;
+    text-shadow: none;
+}
+
+.dialog-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+}
+
+.dialog-buttons button {
+    background: linear-gradient(135deg, #ffd700 0%, #b8860b 50%, #ffd700 100%);
+    color: #8a0303;
+    border: 2px solid #b8860b;
+    padding: 0.8rem 2rem;
+    font-size: 1.1rem;
+    font-weight: bold;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);
+    transition: all 0.3s ease;
+    outline: none;
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5);
+}
+
+.dialog-buttons button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 215, 0, 0.6);
+    background: linear-gradient(135deg, #ffed4e 0%, #daa520 50%, #ffed4e 100%);
+}
+
+.dialog-buttons button:active {
+    transform: translateY(0);
+}
+
+/* 开场界面样式 */
+.intro-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+    background: linear-gradient(135deg, #c41e3a 0%, #8a0303 50%, #c41e3a 100%);
+}
+
+.intro-content {
+    text-align: center;
+    max-width: 80%;
+}
+
+.intro-content h2 {
+    color: #ffd700;
+    font-size: 4rem;
+    font-weight: bold;
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5), 0 0 20px #ffd700, 0 0 30px #ffed4e;
+    animation: glow 1.5s ease-in-out infinite alternate, bounce 2s ease-in-out infinite;
+    letter-spacing: 2px;
+    margin: 0;
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+/* 添加过渡效果 */
+.intro-container,
+.dialog-container,
+.dialog-content,
+.dialog-buttons button,
+.container {
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+/* 初始状态 */
+.dialog-container {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.dialog-content {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.dialog-buttons button {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.container {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+    .intro-content h2 {
+        font-size: 3rem;
+    }
+    
+    .dialog-box {
+        padding: 1.5rem;
+        max-width: 90%;
+    }
+    
+    .dialog-content p {
+        font-size: 1.2rem;
+    }
+    
+    .dialog-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .dialog-buttons button {
+        width: 100%;
+        max-width: 200px;
+    }
 }
 
 #greeting-windows {
