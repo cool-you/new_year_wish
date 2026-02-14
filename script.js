@@ -200,11 +200,158 @@ function handleResponsive() {
     }
 }
 
+// 开场文字内容
+const introTexts = [
+    "没人告诉你陌生链接不要随便点吗？？",
+    "来都来了，那就祝你...",
+    "万事如意！",
+    "心想事成！",
+    "身体健康！"
+];
+
+// 幽默对白内容
+const dialogs = [
+    {
+        text: "准备好接收新年祝福了吗？",
+        yes: "当然啦！",
+        no: "等等..."
+    },
+    {
+        text: "确定要接收这份充满诚意的新年祝福吗？",
+        yes: "必须的！",
+        no: "让我想想..."
+    },
+    {
+        text: "最后确认一下，你真的准备好了吗？",
+        yes: "我已经迫不及待了！",
+        no: "别废话，快上！"
+    },
+    {
+        text: "好吧，既然你这么期待，那就...",
+        yes: "快说！",
+        no: "我等不及了！"
+    },
+    {
+        text: "祝你新年快乐！",
+        yes: "谢谢！",
+        no: "谢谢！"
+    }
+];
+
+// 索引
+let introIndex = 0;
+let dialogIndex = 0;
+
+// 获取相关元素
+const introContainer = document.getElementById('intro-container');
+const introText = document.getElementById('intro-text');
+const dialogContainer = document.getElementById('dialog-container');
+const dialogContent = document.getElementById('dialog-content');
+const dialogBtnYes = document.getElementById('dialog-btn-yes');
+const dialogBtnNo = document.getElementById('dialog-btn-no');
+const mainContainer = document.getElementById('main-container');
+
+// 显示下一个开场文字
+function showNextIntro() {
+    if (introIndex < introTexts.length) {
+        // 添加淡出效果
+        introText.style.opacity = '0';
+        introText.style.transform = 'scale(0.8)';
+        
+        setTimeout(() => {
+            // 更新文字内容
+            introText.textContent = introTexts[introIndex];
+            // 添加淡入效果
+            introText.style.opacity = '1';
+            introText.style.transform = 'scale(1)';
+            introIndex++;
+            
+            // 1.5秒后显示下一句
+            setTimeout(showNextIntro, 1500);
+        }, 500);
+    } else {
+        // 开场文字结束，添加淡出效果
+        introContainer.style.opacity = '0';
+        introContainer.style.transform = 'scale(0.8)';
+        
+        setTimeout(() => {
+            // 隐藏开场界面，显示对白界面
+            introContainer.style.display = 'none';
+            dialogContainer.style.display = 'flex';
+            // 添加淡入效果
+            dialogContainer.style.opacity = '0';
+            dialogContainer.style.transform = 'scale(0.8)';
+            setTimeout(() => {
+                dialogContainer.style.opacity = '1';
+                dialogContainer.style.transform = 'scale(1)';
+                showNextDialog();
+            }, 100);
+        }, 500);
+    }
+}
+
+// 显示下一个对白
+function showNextDialog() {
+    if (dialogIndex < dialogs.length) {
+        // 添加淡出效果
+        dialogContent.style.opacity = '0';
+        dialogContent.style.transform = 'translateY(20px)';
+        dialogBtnYes.style.opacity = '0';
+        dialogBtnYes.style.transform = 'translateY(20px)';
+        dialogBtnNo.style.opacity = '0';
+        dialogBtnNo.style.transform = 'translateY(20px)';
+        
+        setTimeout(() => {
+            // 更新对白内容
+            const dialog = dialogs[dialogIndex];
+            dialogContent.innerHTML = `<p>${dialog.text}</p>`;
+            dialogBtnYes.textContent = dialog.yes;
+            dialogBtnNo.textContent = dialog.no;
+            dialogIndex++;
+            
+            // 添加淡入效果
+            dialogContent.style.opacity = '1';
+            dialogContent.style.transform = 'translateY(0)';
+            dialogBtnYes.style.opacity = '1';
+            dialogBtnYes.style.transform = 'translateY(0)';
+            dialogBtnNo.style.opacity = '1';
+            dialogBtnNo.style.transform = 'translateY(0)';
+        }, 300);
+    } else {
+        // 对白结束，添加淡出效果
+        dialogContainer.style.opacity = '0';
+        dialogContainer.style.transform = 'scale(0.8)';
+        
+        setTimeout(() => {
+            // 隐藏对白界面，显示主界面
+            dialogContainer.style.display = 'none';
+            mainContainer.style.display = 'block';
+            // 添加淡入效果
+            mainContainer.style.opacity = '0';
+            mainContainer.style.transform = 'scale(0.8)';
+            setTimeout(() => {
+                mainContainer.style.opacity = '1';
+                mainContainer.style.transform = 'scale(1)';
+            }, 100);
+        }, 500);
+    }
+}
+
+// 添加对白按钮事件
+function addDialogEvents() {
+    dialogBtnYes.addEventListener('click', showNextDialog);
+    dialogBtnNo.addEventListener('click', showNextDialog);
+}
+
 // 初始化
 function init() {
     addCssAnimations();
     addButtonEvent();
+    addDialogEvents();
     handleResponsive();
+    
+    // 开始显示开场文字
+    showNextIntro();
     
     // 监听窗口大小变化
     window.addEventListener('resize', handleResponsive);
@@ -212,3 +359,4 @@ function init() {
 
 // 启动应用
 init();
+
